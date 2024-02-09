@@ -167,12 +167,9 @@ class schuweb_sitemap_com_sobipro
             $node->changefreq = $params['cat_changefreq'];
 
             $attribs = json_decode($sitemap->sitemap->attribs);
-            $node->xmlInsertChangeFreq = $attribs->xmlInsertChangeFreq;
-            $node->xmlInsertPriority = $attribs->xmlInsertPriority;
 
             $node->expandible = true;
             $node->secure = $parent->secure;
-            $node->lastmod = $parent->lastmod;
             if ($sitemap->printNode($node) !== FALSE) {
                 self::getCategoryTree($sitemap, $parent, $row->id, $params);
             }
@@ -208,13 +205,10 @@ class schuweb_sitemap_com_sobipro
                 $node->changefreq = $params['entry_changefreq'];
 
                 $attribs = json_decode($sitemap->sitemap->attribs);
-                $node->xmlInsertChangeFreq = $attribs->xmlInsertChangeFreq;
-                $node->xmlInsertPriority = $attribs->xmlInsertPriority;
 
                 $node->expandible = false;
                 $node->secure = $parent->secure;
                 $node->link = SPJoomlaMainFrame::url(array('sid' => $row->id, 'pid' => $row->catid, 'title' => $row->name), false, false);
-                $node->lastmod = $parent->lastmod;
                 $sitemap->printNode($node);
             }
 
